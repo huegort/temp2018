@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+    function loadDoc(url, callback) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                callback(this.responseText);
+            }
+        };
+        xhttp.open("GET", url, true);
+        xhttp.send();
+    }
+
+    function populateTable(data){
+        // you code here
+        console.log(data);
+    }
+    //loadDoc("https://jsonplaceholder.typicode.com/users", populateTable);
+    var id = 2;
+    loadDoc("https://jsonplaceholder.typicode.com/users/"+id, populateTable);
+
+</script>
+
+</body>
+</html>

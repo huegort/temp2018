@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div1" onclick="div1Clicked(this)"> click me2</div>
+<div id = "div2"/>
+
+
+    <script>
+       function div1Clicked(elem){
+           document.getElementById("div2").innerHTML = "it was clicked";
+           elem.style.display = "none";
+           console.log("this "+elem.innerHTML);
+       }
+    </script>
+</body>
+</html>

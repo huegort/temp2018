@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create a post</title>
+</head>
+<body>
+<div>
+title <input name="title" value="1"/><br/>
+body <input name="body" value="2"/><br/>
+userId <input name="userId" value="3"/><br/>
+
+<button onclick="createPost(this)">create</button>
+</div>
+
+<script>
+
+    function postAjax(url, params,callback) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            //console.log(this.response+":"+this.status);
+            if (this.readyState == 4 ) {
+                callback(this.responseText);
+            }
+        };
+        xhttp.open("POST", url, true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        xhttp.send(params);
+    }
+    function sendCreatePost(inputData){
+        var params = "title="+inputData["title"]+
+                "&body="+inputData["body"]+
+                "&userId="+inputData["userId"];
+
+        postAjax("https://jsonplaceholder.typicode.com/posts",params, function(response){
+            console.log(response);
+        })
+
+    }
+    function createPost(elem){
+        // get the data
+        var parent = elem.parentElement;
+        var inputData = []
+        var inputElems = parent.getElementsByTagName("input");
+        for (var i = 0; i < inputElems.length ;i++){
+            var inputElem = inputElems[i];
+           // console.log (inputElem.name+" :"+ inputElem.value)
+            inputData[inputElem.name] = inputElem.value;
+        }
+        console.log(inputData);
+        sendCreatePost(inputData);
+
+
+
+    }
+
+</script>
+</body>
+</html>

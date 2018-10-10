@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>table</title>
+</head>
+<body>
+<table id="mainTable">
+    <tr><th>id</th><th>name</th><th>action</th></tr>
+
+</table>
+<div id="testDiv"></div>
+
+<script>
+    var tableElem = document.getElementById("mainTable");
+    for (var i=1;i<5;i++){
+        var inputString ="<tr id='"+i+"'>" +
+            "<td>"+i+"</td><td>joem</td>" +
+            "<td>" +
+            "<button onclick='del("+i+")'>delete</button>" +
+            "</td></tr>";
+        console.log(inputString);
+        tableElem.insertAdjacentHTML("beforeend",inputString);
+    }
+
+    function del(idNumber){
+        document.getElementById(idNumber).style.display = "none";
+    }
+</script>
+
+</body>
+</html>
