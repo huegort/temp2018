@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="wolf" width="400" height="200"></canvas>
+<img src="images/howl.png"/>
+
+
+<script>
+    var imageObj = new Image();
+    imageObj.src = "images/howl.png";
+    var canvas = document.getElementById("wolf");
+    var ctx = canvas.getContext("2d");
+
+    var imageLoc = {x:100,y:40};
+    var imageSize = {w:100,h:100};
+
+    imageObj.onload = drawCanvas();
+
+    function drawCanvas(){
+        ctx.clearRect(0,0,canvas.width,canvas.height)
+
+        //ctx.fillRect(imageLoc.x,imageLoc.y,50,50);
+         ctx.drawImage(imageObj,0,0,imageObj.width,imageObj.height,
+            imageLoc.x,imageLoc.y,imageSize.w,imageSize.h);
+
+    }
+    canvas.addEventListener("mousemove", function(evt){
+       console.log(""+evt.offsetX+":"+evt.offsetY);
+
+        imageSize.w =evt.offsetX - imageLoc.x;
+        imageSize.h =evt.offsetY- imageLoc.y;
+        drawCanvas();
+    });
+
+    console.log("sanity please5");
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

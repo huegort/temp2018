@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="wolf" width="400" height="200"></canvas>
+
+
+<script>
+    var imageObj = new Image();
+    imageObj.src = "images/wolfsheet1.png";
+    var canvas = document.getElementById("wolf");
+    var ctx = canvas.getContext("2d");
+
+    var spriteLoc = {x:320,y:96,num:0};
+    var imageLoc = {x:0,y:0};
+    var imageSize = {w:64,h:32};
+
+    imageObj.onload = drawCanvas();
+
+    function drawCanvas(){
+        console.log("in dc");
+        ctx.clearRect(0,0,canvas.width,canvas.height)
+
+        //ctx.fillRect(imageLoc.x,imageLoc.y,50,50);
+        ctx.drawImage(imageObj,spriteLoc.x,spriteLoc.y,imageSize.w,imageSize.h,
+            imageLoc.x,imageLoc.y,imageSize.w,imageSize.h);
+
+    }
+    function changeSprite(){
+        console.log("tick");
+        spriteLoc.num += 1;
+        if (spriteLoc.num>=5)spriteLoc.num = 0;
+        spriteLoc.x=320 + 64 * spriteLoc.num;
+        drawCanvas();
+    }
+
+    setInterval( changeSprite,1000/4);
+    console.log("sanity please5");
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

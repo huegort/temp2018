@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ball game</title>
+</head>
+<body>
+sample balls
+<canvas id="gameBoard" height="400" width="400"></canvas>
+<script src="js/Ball.js"></script>
+<script>
+    var game = {
+        numberOfBalls:100,
+        maxBallSpeed:5
+    };
+    game.canvas =document.getElementById("gameBoard");
+    game.ctx = game.canvas.getContext("2d");
+    function initGame(){
+        game.actors = [];
+        for(var i = 0; i< game.numberOfBalls; i++){
+            game.actors.push(new Ball(game));
+
+        }
+        // call init for each actor
+
+        drawAll();
+        setInterval(tickAll, 1000/60);
+    }
+    function tickAll(){
+        for(var i = 0; i< game.actors.length; i++){
+            game.actors[i].tick();
+        }
+        drawAll();
+    }
+    function drawAll(){
+        game.ctx.clearRect(0,0, game.canvas.width, game.canvas.height);
+
+        for(var i = 0; i< game.actors.length; i++){
+            game.actors[i].draw();
+        }
+    }
+    initGame();
+
+</script>
+</body>
+</html>
